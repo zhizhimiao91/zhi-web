@@ -1,6 +1,11 @@
 // 客户端入口：不 hydration（SSG 纯静态），仅收集组件样式 + 轻量交互
 import './styles.css'
-import './pages-manifest'
+// 显式引用组件，防止 tree-shaking 移除 scoped style
+import Layout from './Layout.vue'
+import IndexPage from './pages/index/Page.vue'
+import CategoryPage from './pages/category/Page.vue'
+import ArticlePage from './pages/article/Page.vue'
+globalThis.__ZHI_COMPONENTS = { Layout, IndexPage, CategoryPage, ArticlePage }
 
 // 浏览量上报
 const m = location.pathname.match(/\/page\/[^/]+\/([^/]+)/)
