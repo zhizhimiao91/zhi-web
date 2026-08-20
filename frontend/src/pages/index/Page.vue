@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import { useData } from 'vike-vue/useData'
-import type { Data } from './+data'
-
-const data = useData<Data>()
+const props = defineProps({ data: { type: Object, required: true } })
 
 const base = import.meta.env.BASE_URL
 
@@ -46,28 +43,23 @@ function articleHref(category: string, slug: string) {
 .categories {
   margin-bottom: 1.5rem;
 }
-
 .categories a {
   margin-right: 0.75rem;
   color: #2563eb;
   text-decoration: none;
 }
-
 .categories a:hover {
   text-decoration: underline;
 }
-
 .article-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-
 .article-list li {
   padding: 1rem 0;
   border-bottom: 1px solid #f3f4f6;
 }
-
 .article-list a {
   display: flex;
   justify-content: space-between;
@@ -75,28 +67,23 @@ function articleHref(category: string, slug: string) {
   text-decoration: none;
   color: inherit;
 }
-
 .article-list .title {
   font-size: 1.125rem;
   font-weight: 600;
 }
-
 .article-list .title:hover {
   color: #2563eb;
 }
-
 .article-list .meta {
   color: #9ca3af;
   font-size: 0.875rem;
   white-space: nowrap;
 }
-
 .article-list .summary {
   margin: 0.375rem 0 0;
   color: #6b7280;
   font-size: 0.9rem;
 }
-
 .empty {
   color: #9ca3af;
 }

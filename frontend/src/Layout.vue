@@ -39,7 +39,7 @@ const base = import.meta.env.BASE_URL
   border-bottom: 1px solid #e5e7eb;
 }
 
-.site-title {
+.site-header a.site-title {
   font-size: 1.25rem;
   font-weight: 700;
   text-decoration: none;
