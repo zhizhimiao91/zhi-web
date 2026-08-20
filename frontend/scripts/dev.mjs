@@ -14,10 +14,10 @@ const server = await createServer({
 
 // 开发模式加载全部 CSS（构建时由 SSG 按需注入）
 const devCss = [
-  '/src/styles/style.css',
-  '/src/styles/index.css',
-  '/src/styles/page/category/style.css',
-  '/src/styles/page/article/style.css',
+  '/src/assets/css/style.css',
+  '/src/assets/css/index.css',
+  '/src/assets/css/page/category/style.css',
+  '/src/assets/css/page/article/style.css',
 ].map((f) => `<link rel="stylesheet" href="${f}">`).join('\n')
 
 server.middlewares.use(async (req, res, next) => {
