@@ -1,5 +1,5 @@
-// 客户端入口：不 hydration（SSG 纯静态），仅收集组件样式 + 轻量交互
-import './styles/global.css'
+// 客户端入口（通用）：不 hydration（SSG 纯静态），仅收集组件样式 + 轻量交互
+import './styles/style.css'
 // 显式引用组件，防止 tree-shaking 移除 scoped style
 import Layout from './app/Layout.vue'
 import IndexPage from './pages/HomePage.vue'

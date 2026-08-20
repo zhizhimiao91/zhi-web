@@ -12,6 +12,14 @@ const server = await createServer({
   appType: 'custom',
 })
 
+// 开发模式加载全部 CSS（构建时由 SSG 按需注入）
+const devCss = [
+  '/src/styles/style.css',
+  '/src/styles/index.css',
+  '/src/styles/page/category/style.css',
+  '/src/styles/page/article/style.css',
+].map((f) => `<link rel="stylesheet" href="${f}">`).join('\n')
+
 server.middlewares.use(async (req, res, next) => {
   try {
     const url = new URL(req.url, 'http://localhost')
@@ -25,7 +33,7 @@ server.middlewares.use(async (req, res, next) => {
     let out = template
       .replace('__TITLE__', title)
       .replace('__DESCRIPTION__', description)
-      .replace('__CSS__', '')
+      .replace('__CSS__', devCss)
       .replace('__HTML__', html)
       .replace('__JS__', '')
 

@@ -26,30 +26,3 @@ const article = props.data.article
   </article>
 </template>
 
-<style scoped>
-.article-header {
-  margin-bottom: 1.5rem;
-}
-.article-title {
-  font-size: 1.75rem;
-  margin: 0 0 0.5rem;
-}
-.article-meta {
-  color: #9ca3af;
-  font-size: 0.875rem;
-}
-.article-meta a {
-  color: #2563eb;
-  text-decoration: none;
-}
-.article-footer {
-  margin-top: 2.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid #f3f4f6;
-  font-size: 0.875rem;
-}
-.article-footer a {
-  color: #9ca3af;
-  text-decoration: none;
-}
-</style>

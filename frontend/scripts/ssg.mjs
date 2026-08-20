@@ -34,14 +34,20 @@ const clientOut = join(root, 'dist/client')
 const manifest = JSON.parse(
   readFileSync(join(clientOut, '.vite/manifest.json'), 'utf-8'),
 )
-const entry = manifest['src/entry-client.ts']
-const cssLinks = (entry.css ?? [])
-  .map((f) => `<link rel="stylesheet" href="${base}${f}">`)
-  .join('\n')
-const jsScript = `<script type="module" src="${base}${entry.file}"></script>`
+
+function buildPageAssets(entryKey, extraEntryKey) {
+  const mainEntry = manifest[entryKey]
+  const extraEntry = extraEntryKey ? manifest[extraEntryKey] : null
+  const cssFiles = [...(mainEntry.css ?? []), ...(extraEntry?.css ?? [])]
+  const cssLinks = cssFiles
+    .map((f) => `<link rel="stylesheet" href="${base}${f}">`)
+    .join('\n')
+  const jsScript = `<script type="module" src="${base}${mainEntry.file}"></script>`
+  return { cssLinks, jsScript }
+}
 
 // 5. 渲染每个页面
-function fillTemplate(title, description, html) {
+function fillTemplate(title, description, html, cssLinks, jsScript) {
   return template
     .replace('__TITLE__', title)
     .replace('__DESCRIPTION__', description)
@@ -54,10 +60,21 @@ const urls = getPrerenderUrls()
 console.log(`[ssg] prerendering ${urls.length} pages...`)
 for (const url of urls) {
   const { title, description, html } = await render(url)
+
+  // 按路由类型选择对应 CSS
+  const assets =
+    url === '/'
+      ? buildPageAssets('src/entry-client.ts', 'src/entry-client-home.ts')
+      : url.startsWith('/page/') && url.split('/').length === 4
+        ? buildPageAssets('src/entry-client.ts', 'src/entry-client-article.ts')
+        : url.startsWith('/page/')
+          ? buildPageAssets('src/entry-client.ts', 'src/entry-client-category.ts')
+          : buildPageAssets('src/entry-client.ts')
+
   const outFile =
     url === '/' ? join(clientOut, 'index.html') : join(clientOut, url, 'index.html')
   mkdirSync(dirname(outFile), { recursive: true })
-  writeFileSync(outFile, fillTemplate(title, description, html))
+  writeFileSync(outFile, fillTemplate(title, description, html, assets.cssLinks, assets.jsScript))
   console.log(`  ${url}`)
 }
 
@@ -65,7 +82,7 @@ for (const url of urls) {
 const notFound = await render('/this-page-does-not-exist')
 writeFileSync(
   join(clientOut, '404.html'),
-  fillTemplate(notFound.title, notFound.description, notFound.html),
+  fillTemplate(notFound.title, notFound.description, notFound.html, '', ''),
 )
 console.log('  404.html')
 

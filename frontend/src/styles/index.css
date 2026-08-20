@@ -1,0 +1,15 @@
+/* 首页 */
+.categories {
+  margin-bottom: 1.5rem;
+}
+.categories a {
+  margin-right: 0.75rem;
+  color: #2563eb;
+  text-decoration: none;
+}
+.categories a:hover {
+  text-decoration: underline;
+}
+.empty {
+  color: #9ca3af;
+}

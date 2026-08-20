@@ -15,7 +15,12 @@ export default defineConfig({
     emptyOutDir: true,
     manifest: true,
     rollupOptions: {
-      input: 'src/entry-client.ts',
+      input: {
+        main: 'src/entry-client.ts',
+        home: 'src/entry-client-home.ts',
+        category: 'src/entry-client-category.ts',
+        article: 'src/entry-client-article.ts',
+      },
     },
   },
 })
