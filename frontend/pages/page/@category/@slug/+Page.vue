@@ -1,0 +1,71 @@
+<script setup lang="ts">
+import { useData } from 'vike-vue/useData'
+import { Head } from 'vike-vue/Head'
+import type { Data } from './+data'
+
+const data = useData<Data>()
+const article = data.article
+</script>
+
+<template>
+  <article>
+    <Head>
+      <title>{{ article.title }} - 知知喵的博客</title>
+    </Head>
+
+    <header class="article-header">
+      <h1 class="article-title">{{ article.title }}</h1>
+      <div class="article-meta">
+        <span>{{ article.date }}</span>
+        <span>·</span>
+        <a :href="`/page/${encodeURIComponent(article.category)}`">{{ article.category }}</a>
+      </div>
+    </header>
+
+    <div class="article-content" v-html="article.contentHtml" />
+
+    <footer class="article-footer">
+      <a :href="`/page/${encodeURIComponent(article.category)}/${encodeURIComponent(article.slug)}`">
+        固定链接
+      </a>
+    </footer>
+  </article>
+</template>
+
+<style scoped>
+.article-header {
+  margin-bottom: 1.5rem;
+}
+
+.article-title {
+  font-size: 1.75rem;
+  margin: 0 0 0.5rem;
+}
+
+.article-meta {
+  color: #9ca3af;
+  font-size: 0.875rem;
+}
+
+.article-meta a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.article-content {
+  line-height: 1.75;
+  word-wrap: break-word;
+}
+
+.article-footer {
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f3f4f6;
+  font-size: 0.875rem;
+}
+
+.article-footer a {
+  color: #9ca3af;
+  text-decoration: none;
+}
+</style>

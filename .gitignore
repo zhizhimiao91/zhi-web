@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.log
+*.sqlite
+*.sqlite-journal
+
+# 环境变量（示例除外）
+.env
+.env.*
+!.env.example
+
+.DS_Store
