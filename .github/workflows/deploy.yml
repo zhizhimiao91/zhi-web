@@ -26,16 +26,19 @@ jobs:
         with:
           node-version: 22
 
+      - name: Install pnpm
+        run: npm install -g pnpm@10
+
       - name: Install dependencies
         working-directory: frontend
-        run: npm install
+        run: pnpm install --frozen-lockfile
 
       - name: Build (SSG)
         working-directory: frontend
         env:
           # 默认 github.io/zhi-web/ 路径；绑定自定义子域名后改为 BASE_URL: /
           BASE_URL: /zhi-web/
-        run: npm run build
+        run: pnpm run build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

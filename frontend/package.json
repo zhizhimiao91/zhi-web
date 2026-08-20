@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node scripts/dev.mjs",
     "build": "node scripts/ssg.mjs",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "node_modules/.bin/tsc --noEmit"
   },
   "dependencies": {
     "@vue/server-renderer": "^3.5.41",
@@ -17,7 +17,7 @@
     "@types/markdown-it": "^14.2.0",
     "@types/node": "^22.0.0",
     "@vitejs/plugin-vue": "^6.0.8",
-    "typescript": "^5.6.0",
+    "typescript": "^6.0.3",
     "vite": "^7.3.6"
   }
 }
