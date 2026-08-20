@@ -1,10 +1,10 @@
-import { IndexPage, CategoryPage, ArticlePage } from './pages-manifest'
+import { IndexPage, CategoryPage, ArticlePage } from '../pages-manifest'
 import {
   loadAllArticles,
   loadArticleBySlug,
   loadArticlesByCategory,
 } from '../lib/articles.server'
-import type { PageResult } from './types'
+import type { PageResult } from '../lib/types'
 import { matchPath } from './router'
 
 function homePage(): PageResult {

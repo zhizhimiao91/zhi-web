@@ -1,5 +1,5 @@
 import type { Component } from 'vue'
-import type { Article, ArticleMeta } from '../lib/articles'
+import type { Article, ArticleMeta } from './articles'
 
 export interface CategoryInfo {
   key: string
