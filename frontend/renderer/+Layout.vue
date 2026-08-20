@@ -1,12 +1,13 @@
 <script setup lang="ts">
+const base = import.meta.env.BASE_URL
 </script>
 
 <template>
   <div class="layout">
     <header class="site-header">
-      <a href="/" class="site-title">知知喵的博客</a>
+      <a :href="`${base}`" class="site-title">知知喵的博客</a>
       <nav class="site-nav">
-        <a href="/">首页</a>
+        <a :href="`${base}`">首页</a>
       </nav>
     </header>
 

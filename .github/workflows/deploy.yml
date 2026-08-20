@@ -34,6 +34,9 @@ jobs:
 
       - name: Build (SSG)
         working-directory: frontend
+        env:
+          # 默认 github.io/zhi-web/ 路径；绑定自定义子域名后改为 BASE_URL: /
+          BASE_URL: /zhi-web/
         run: npm run build
 
       - name: Upload Pages artifact

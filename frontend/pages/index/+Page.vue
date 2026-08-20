@@ -3,6 +3,16 @@ import { useData } from 'vike-vue/useData'
 import type { Data } from './+data'
 
 const data = useData<Data>()
+
+const base = import.meta.env.BASE_URL
+
+function categoryHref(category: string) {
+  return `${base}page/${encodeURIComponent(category)}`
+}
+
+function articleHref(category: string, slug: string) {
+  return `${base}page/${encodeURIComponent(category)}/${encodeURIComponent(slug)}`
+}
 </script>
 
 <template>
@@ -12,7 +22,7 @@ const data = useData<Data>()
       <a
         v-for="category in data.categories"
         :key="category"
-        :href="`/page/${encodeURIComponent(category)}`"
+        :href="categoryHref(category)"
       >
         {{ category }}
       </a>
@@ -20,7 +30,7 @@ const data = useData<Data>()
 
     <ul class="article-list">
       <li v-for="article in data.articles" :key="article.slug">
-        <a :href="`/page/${encodeURIComponent(article.category)}/${encodeURIComponent(article.slug)}`">
+        <a :href="articleHref(article.category, article.slug)">
           <span class="title">{{ article.title }}</span>
           <span class="meta">{{ article.date }} · {{ article.category }}</span>
         </a>

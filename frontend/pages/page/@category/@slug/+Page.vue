@@ -4,6 +4,10 @@ import type { Data } from './+data'
 
 const data = useData<Data>()
 const article = data.article
+
+const base = import.meta.env.BASE_URL
+const categoryHref = `${base}page/${encodeURIComponent(article.category)}`
+const articleHref = `${base}page/${encodeURIComponent(article.category)}/${encodeURIComponent(article.slug)}`
 </script>
 
 <template>
@@ -13,14 +17,14 @@ const article = data.article
       <div class="article-meta">
         <span>{{ article.date }}</span>
         <span>·</span>
-        <a :href="`/page/${encodeURIComponent(article.category)}`">{{ article.category }}</a>
+        <a :href="categoryHref">{{ article.category }}</a>
       </div>
     </header>
 
     <div class="article-content" v-html="article.contentHtml" />
 
     <footer class="article-footer">
-      <a :href="`/page/${encodeURIComponent(article.category)}/${encodeURIComponent(article.slug)}`">
+      <a :href="articleHref">
         固定链接
       </a>
     </footer>
