@@ -25,9 +25,11 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: 22
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
 
-      - name: Install pnpm
-        run: npm install -g pnpm@10
+      - name: Install pnpm (corepack)
+        run: corepack enable
 
       - name: Install dependencies
         working-directory: frontend
