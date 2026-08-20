@@ -7,13 +7,13 @@ const data = useData<Data>()
 const base = import.meta.env.BASE_URL
 
 function articleHref(category: string, slug: string) {
-  return `${base}page/${encodeURIComponent(category)}/${encodeURIComponent(slug)}`
+  return `${base}page/${category}/${slug}`
 }
 </script>
 
 <template>
   <section>
-    <h1 class="page-title">分类：{{ data.category }}</h1>
+    <h1 class="page-title">分类：{{ data.categoryName }}</h1>
 
     <ul class="article-list">
       <li v-for="article in data.articles" :key="article.slug">

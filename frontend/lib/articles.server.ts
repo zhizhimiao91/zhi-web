@@ -15,6 +15,7 @@ function buildArticle(category: string, filename: string): Article {
   return {
     slug,
     category,
+    categoryName: meta.categoryName ?? category,
     title: meta.title ?? slug,
     date: meta.date ?? '1970-01-01',
     tags: meta.tags ?? [],

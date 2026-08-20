@@ -7,11 +7,11 @@ const data = useData<Data>()
 const base = import.meta.env.BASE_URL
 
 function categoryHref(category: string) {
-  return `${base}page/${encodeURIComponent(category)}`
+  return `${base}page/${category}`
 }
 
 function articleHref(category: string, slug: string) {
-  return `${base}page/${encodeURIComponent(category)}/${encodeURIComponent(slug)}`
+  return `${base}page/${category}/${slug}`
 }
 </script>
 
@@ -21,10 +21,10 @@ function articleHref(category: string, slug: string) {
       <span>分类：</span>
       <a
         v-for="category in data.categories"
-        :key="category"
-        :href="categoryHref(category)"
+        :key="category.key"
+        :href="categoryHref(category.key)"
       >
-        {{ category }}
+        {{ category.name }}
       </a>
     </nav>
 
@@ -32,7 +32,7 @@ function articleHref(category: string, slug: string) {
       <li v-for="article in data.articles" :key="article.slug">
         <a :href="articleHref(article.category, article.slug)">
           <span class="title">{{ article.title }}</span>
-          <span class="meta">{{ article.date }} · {{ article.category }}</span>
+          <span class="meta">{{ article.date }} · {{ article.categoryName }}</span>
         </a>
         <p v-if="article.summary" class="summary">{{ article.summary }}</p>
       </li>

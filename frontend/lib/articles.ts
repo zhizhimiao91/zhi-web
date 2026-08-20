@@ -1,6 +1,10 @@
 export interface ArticleMeta {
+  /** URL slug（英文，文件名） */
   slug: string
+  /** URL 分类 key（英文，目录名） */
   category: string
+  /** 分类中文显示名 */
+  categoryName: string
   title: string
   date: string
   tags: string[]
@@ -53,6 +57,9 @@ export function parseFrontmatter(raw: string): ParsedFrontmatter {
         break
       case 'category':
         meta.category = value
+        break
+      case 'categoryName':
+        meta.categoryName = value
         break
       case 'date':
         meta.date = value

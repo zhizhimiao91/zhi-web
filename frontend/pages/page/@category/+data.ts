@@ -13,5 +13,9 @@ async function data(pageContext: PageContextServer) {
     throw render(404, `分类 "${category}" 不存在`)
   }
 
-  return { category, articles }
+  return {
+    category,
+    categoryName: articles[0].categoryName,
+    articles,
+  }
 }

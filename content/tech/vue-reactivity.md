@@ -1,7 +1,8 @@
 ---
 title: Vue 响应式原理
+category: tech
+categoryName: 技术
 date: 2026-08-20
-category: 技术
 tags: [Vue, 前端]
 summary: 从 Object.defineProperty 到 Proxy，一文看懂 Vue 2/3 响应式系统。
 ---

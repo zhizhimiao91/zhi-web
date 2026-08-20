@@ -6,8 +6,8 @@ const data = useData<Data>()
 const article = data.article
 
 const base = import.meta.env.BASE_URL
-const categoryHref = `${base}page/${encodeURIComponent(article.category)}`
-const articleHref = `${base}page/${encodeURIComponent(article.category)}/${encodeURIComponent(article.slug)}`
+const categoryHref = `${base}page/${article.category}`
+const articleHref = `${base}page/${article.category}/${article.slug}`
 </script>
 
 <template>
@@ -17,7 +17,7 @@ const articleHref = `${base}page/${encodeURIComponent(article.category)}/${encod
       <div class="article-meta">
         <span>{{ article.date }}</span>
         <span>·</span>
-        <a :href="categoryHref">{{ article.category }}</a>
+        <a :href="categoryHref">{{ article.categoryName }}</a>
       </div>
     </header>
 
