@@ -1,11 +1,10 @@
-import MarkdownIt from 'markdown-it'
+import { marked } from 'marked'
 
-const md = new MarkdownIt({
-  html: false,
-  linkify: true,
-  typographer: true,
+marked.use({
+  gfm: true,
+  breaks: false,
 })
 
 export function renderMarkdown(src: string): string {
-  return md.render(src)
+  return marked.parse(src, { async: false }) as string
 }
