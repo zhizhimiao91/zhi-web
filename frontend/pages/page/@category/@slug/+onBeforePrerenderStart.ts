@@ -4,8 +4,5 @@ import { loadAllArticles } from '../../../../lib/articles.server'
 export { onBeforePrerenderStart }
 
 const onBeforePrerenderStart: OnBeforePrerenderStartAsync = async () => {
-  return loadAllArticles().map(
-    (article) =>
-      `/page/${encodeURIComponent(article.category)}/${encodeURIComponent(article.slug)}`,
-  )
+  return loadAllArticles().map((article) => `/page/${article.category}/${article.slug}`)
 }

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useData } from 'vike-vue/useData'
-import { Head } from 'vike-vue/Head'
 import type { Data } from './+data'
 
 const data = useData<Data>()
@@ -9,10 +8,6 @@ const article = data.article
 
 <template>
   <article>
-    <Head>
-      <title>{{ article.title }} - 知知喵的博客</title>
-    </Head>
-
     <header class="article-header">
       <h1 class="article-title">{{ article.title }}</h1>
       <div class="article-meta">
