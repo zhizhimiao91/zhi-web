@@ -1,6 +1,6 @@
 import { createSSRApp, h } from 'vue'
 import { renderToString } from 'vue/server-renderer'
-import Layout from './Layout.vue'
+import Layout from './app/Layout.vue'
 import { getPrerenderUrls, matchUrl } from './app/routes'
 
 export { getPrerenderUrls }

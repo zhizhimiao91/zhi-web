@@ -1,4 +1,4 @@
-import { IndexPage, CategoryPage, ArticlePage } from '../pages-manifest'
+import { IndexPage, CategoryPage, ArticlePage } from './components'
 import {
   loadAllArticles,
   loadArticleBySlug,
