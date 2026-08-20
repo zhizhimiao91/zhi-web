@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vike dev",
-    "build": "vike build",
+    "build": "vike build && node scripts/fix-serialized.mjs",
     "preview": "vike preview",
     "typecheck": "vue-tsc --noEmit"
   },
