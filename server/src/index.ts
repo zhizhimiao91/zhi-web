@@ -1,10 +1,8 @@
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
-import { allowedOrigins, HOST, PORT } from './config.js'
-import { articlesRouter } from './routes/articles.js'
-import { healthRouter } from './routes/health.js'
-import { searchRouter } from './routes/search.js'
+import { allowedOrigins, HOST, PORT } from './app/Foundation/config.js'
+import { api } from './app/Foundation/api.js'
 
 const app = new Hono()
 
@@ -23,9 +21,7 @@ app.use(
   }),
 )
 
-app.route('/api/articles', articlesRouter)
-app.route('/api/search', searchRouter)
-app.route('/api/health', healthRouter)
+app.route('/api', api)
 
 serve({ fetch: app.fetch, port: PORT, hostname: HOST }, (info) => {
   console.log(`[zhi-web] API listening on http://${info.address}:${info.port}`)
